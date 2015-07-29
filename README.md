@@ -1,5 +1,5 @@
 # jest-for-appengine
-A small shim (hack) that allows you to use Jest (and therefore, Elasticsearch) from Google App Engine
+A small shim (hack) that allows you to use [Jest](https://github.com/searchbox-io/Jest) (and therefore, [Elasticsearch](https://www.elastic.co/products/elasticsearch)) from [Google App Engine](https://cloud.google.com/appengine/docs)
 
 ## Why?
 If you want to talk to Elasticsearch from Google App Engine, you can't use the official java client because it tries to add the machine as a node to the cluster which doesn't end well. Jest is an awesome library that instead talks to the remote Elasticsearch using only the REST API. This sounds great, but also has dependencies on classes that cannot be run in an app engine environment.
