@@ -5,7 +5,7 @@ A small shim (hack) that allows you to use [Jest](https://github.com/searchbox-i
 If you want to talk to Elasticsearch from Google App Engine, you can't use the official java client because it tries to add the machine as a node to the cluster which doesn't end well. Jest is an awesome library that instead talks to the remote Elasticsearch using only the REST API. This sounds great, but also has dependencies on classes that cannot be run in an app engine environment.
 
 ## How to use it
-In your gradle.build, include it as a dependecy along with your Jest dependencies:
+In your gradle.build, include it as a dependency along with your Jest dependencies:
 
     compile files('path/to/jest-for-appengine-0.0.1.jar')
     compile 'io.searchbox:jest:0.1.6'
