@@ -1,0 +1,29 @@
+apply plugin: 'java'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+version = '0.0.1'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'jest-for-appengine',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.searchbox:jest:0.1.6'
+    compile 'org.apache.lucene:lucene-core:4.10.3'
+}
+
