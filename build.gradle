@@ -10,7 +10,7 @@ buildscript {
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
 
-version = '0.0.2'
+version = '0.0.3'
 
 jar {
     manifest {
