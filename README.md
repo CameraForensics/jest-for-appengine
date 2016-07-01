@@ -1,4 +1,4 @@
-# jest-for-appengine
+# jest-for-appengine [![Build Status](https://travis-ci.org/CameraForensics/jest-for-appengine.svg?branch=master)](https://travis-ci.org/CameraForensics/jest-for-appengine)
 A small shim (hack) that allows you to use [Jest](https://github.com/searchbox-io/Jest) (and therefore, [Elasticsearch](https://www.elastic.co/products/elasticsearch)) from [Google App Engine](https://cloud.google.com/appengine/docs)
 
 ## Why?
