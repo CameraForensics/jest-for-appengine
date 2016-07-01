@@ -1,8 +1,30 @@
 group 'com.cameraforensics'
-version '0.1.0'
+version '0.0.3'
 
 apply plugin: 'java'
-apply plugin: 'java'
+apply plugin: 'maven'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
 
 sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
 
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'jest-for-appengine',
+                'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.searchbox:jest:0.1.6'
+    compile 'org.apache.lucene:lucene-core:4.10.3'
+}
