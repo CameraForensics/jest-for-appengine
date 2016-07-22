@@ -97,7 +97,7 @@ public class JestForAppEngineClient implements JestClient {
     }
 
     @Override
-    public <T extends JestResult> void executeAsync(Action<T> clientRequest, JestResultHandler<T> jestResultHandler) {
+    public <T extends JestResult> void executeAsync(Action<T> clientRequest, JestResultHandler<? super T> jestResultHandler) {
         throw new NotImplementedException("TODO");
     }
 
