@@ -26,7 +26,7 @@ repositories {
 
 dependencies {
     compile 'io.searchbox:jest:2.0.1'
-    compile 'org.apache.lucene:lucene-core:5.5.2'
+    compile 'org.apache.lucene:lucene-core:5.5.0'
 }
 
 // custom tasks for creating source/javadoc jars
