@@ -1,14 +1,19 @@
 group 'com.cameraforensics'
 version '2.0.1'
 
-apply plugin: 'java'
-apply plugin: 'maven'
-
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.+"
     }
 }
+
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'java'
+apply plugin: 'maven'
 
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
@@ -40,23 +45,39 @@ task javadocJar(type: Jar, dependsOn:javadoc) {
     from javadoc.destinationDir
 }
 
+artifactoryPublish {
+    dependsOn sourcesJar, javadocJar
+}
+
 // add javadoc/source jar tasks as artifacts
 artifacts {
     archives sourcesJar
     archives javadocJar
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(
-                    url: "${nexusUrl}/content/repositories/releases") {
-                authentication(userName: nexusUsername, password: nexusPassword)
-            }
-            snapshotRepository(
-                    url: "${nexusUrl}/content/repositories/snapshots") {
-                authentication(userName: nexusUsername, password: nexusPassword)
-            }
+configurations {
+    published
+}
+
+artifactory {
+    contextUrl = "${artifactoryUrl}"
+    publish {
+        repository {
+            repoKey = "libs-release-local"
+            username = "${artifactoryUsername}"
+            password = "${artifactoryPassword}"
+        }
+        defaults {
+            publishConfigs('archives', 'published')
+            publishArtifacts = true
+            properties = ['qa.level': 'basic', 'dev.team' : 'core']
+            publishPom = true
+        }
+    }
+    resolve {
+        repository {
+            repoKey = 'libs-release'
+            maven = true
         }
     }
 }
