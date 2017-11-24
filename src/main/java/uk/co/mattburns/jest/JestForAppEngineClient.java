@@ -70,13 +70,13 @@ public class JestForAppEngineClient implements JestClient {
 
             if(payload != null) {
                 //If there is no body data, this throws a null, unless we check for payload nullness
-                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
                 writer.write(payload);
                 writer.close();
             }
 
             responseCode = connection.getResponseCode();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
             String line;
 
             while ((line = reader.readLine()) != null) {

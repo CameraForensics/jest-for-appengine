@@ -1,5 +1,5 @@
 group 'com.cameraforensics'
-version '2.0.1'
+version '2.0.1-5.5.0-2'
 
 buildscript {
     repositories {
