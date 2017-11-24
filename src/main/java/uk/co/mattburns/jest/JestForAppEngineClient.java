@@ -18,8 +18,11 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Set;
+import java.util.logging.Logger;
 
 public class JestForAppEngineClient implements JestClient {
+
+    private static final Logger LOG =  Logger.getLogger(JestForAppEngineClient.class.getName());
 
     private final URL host;
     private final String username;
@@ -68,9 +71,12 @@ public class JestForAppEngineClient implements JestClient {
                 connection.setRequestProperty("Authorization", "Basic " + Base64.encodeBase64String((username + ":" + password).getBytes()));
             }
 
+            LOG.info("Using UTF-8, yo");
+
             if(payload != null) {
                 //If there is no body data, this throws a null, unless we check for payload nullness
                 OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream(), "UTF-8");
+                LOG.fine("Payload: " + payload);
                 writer.write(payload);
                 writer.close();
             }
@@ -83,7 +89,10 @@ public class JestForAppEngineClient implements JestClient {
                 response += line;
             }
             reader.close();
+
+            LOG.fine("Response: " + response);
         } catch (Exception e) {
+            LOG.info("Comms Error: " + e.getMessage());
             reasonPhrase += e.getMessage();
         }
 
