@@ -1,5 +1,6 @@
 package uk.co.mattburns.jest;
 
+import com.google.apphosting.api.DeadlineExceededException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.searchbox.action.Action;
@@ -9,7 +10,6 @@ import io.searchbox.client.JestResult;
 import io.searchbox.client.JestResultHandler;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.NotImplementedException;
-import org.apache.http.HttpStatus;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +18,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class JestForAppEngineClient implements JestClient {
@@ -92,8 +93,13 @@ public class JestForAppEngineClient implements JestClient {
 
             LOG.fine("Response: " + response);
         } catch (Exception e) {
-            LOG.info("Comms Error: " + e.getMessage());
-            reasonPhrase += e.getMessage();
+            LOG.log(Level.WARNING, "Comms Error", e);
+            if (e.getMessage().contains("deadline")) {
+                throw new DeadlineExceededException(e.getMessage());
+            }
+            else {
+                reasonPhrase += e.getMessage();
+            }
         }
 
         if (responseCode != HttpURLConnection.HTTP_OK) {
