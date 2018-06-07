@@ -1,5 +1,6 @@
-group 'com.cameraforensics'
-version '2.0.1-5.5.0-5-1.0'
+apply from: 'common.gradle'
+
+apply plugin: 'com.jfrog.artifactory'
 
 buildscript {
     repositories {
@@ -9,32 +10,6 @@ buildscript {
     dependencies {
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.+"
     }
-}
-
-apply plugin: 'com.jfrog.artifactory'
-apply plugin: 'java'
-apply plugin: 'maven'
-
-sourceCompatibility = JavaVersion.VERSION_1_7
-targetCompatibility = JavaVersion.VERSION_1_7
-
-def appengineVersion = "1.9.49"
-
-jar {
-    manifest {
-        attributes 'Implementation-Title': 'jest-for-appengine',
-                   'Implementation-Version': version
-    }
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile 'io.searchbox:jest:2.0.1'
-    compile 'org.apache.lucene:lucene-core:5.5.0'
-    compile "com.google.appengine:appengine-api-1.0-sdk:${appengineVersion}"
 }
 
 // custom tasks for creating source/javadoc jars

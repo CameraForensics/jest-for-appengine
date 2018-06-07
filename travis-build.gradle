@@ -1,30 +1,7 @@
-group 'com.cameraforensics'
-version '2.0.1'
-
-apply plugin: 'java'
-apply plugin: 'maven'
+apply from: 'common.gradle'
 
 buildscript {
     repositories {
         mavenCentral()
     }
-}
-
-sourceCompatibility = JavaVersion.VERSION_1_7
-targetCompatibility = JavaVersion.VERSION_1_7
-
-jar {
-    manifest {
-        attributes 'Implementation-Title': 'jest-for-appengine',
-                'Implementation-Version': version
-    }
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile 'io.searchbox:jest:2.0.1'
-    compile 'org.apache.lucene:lucene-core:6.1.0'
 }

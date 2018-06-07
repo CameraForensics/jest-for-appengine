@@ -1,0 +1,27 @@
+group 'com.cameraforensics'
+version '2.0.1-5.5.0-6'
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+def appengineVersion = "1.9.49"
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'jest-for-appengine',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.searchbox:jest:2.0.1'
+    compile 'org.apache.lucene:lucene-core:5.5.0'
+    compile "com.google.appengine:appengine-api-1.0-sdk:${appengineVersion}"
+}

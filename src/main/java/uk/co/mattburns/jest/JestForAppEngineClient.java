@@ -72,7 +72,7 @@ public class JestForAppEngineClient implements JestClient {
                 connection.setRequestProperty("Authorization", "Basic " + Base64.encodeBase64String((username + ":" + password).getBytes()));
             }
 
-            LOG.info("Using UTF-8, yo");
+            LOG.info("Using UTF-8, word");
 
             if(payload != null) {
                 //If there is no body data, this throws a null, unless we check for payload nullness
